@@ -30,6 +30,22 @@
     .sync-badge { font-size: 11px; color: #92400e; background: #fff7ed; border-top: 1px solid #fde68a; padding: 4px 8px; text-align: center; }
   </style>
 
+
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+<script>
+firebase.initializeApp({
+  apiKey: "AIzaSyDWA57ATd_Vy-etfbNMSyOvnAlJDZH4NG8",
+  authDomain: "danicup-2026-ce.firebaseapp.com",
+  projectId: "danicup-2026-ce",
+  storageBucket: "danicup-2026-ce.firebasestorage.app",
+  messagingSenderId: "738751512055",
+  appId: "1:738751512055:web:263f6b4a036b787227c2f2"
+});
+const db = firebase.firestore();
+const tournamentRef = db.collection("settings").doc("tournament");
+</script>
+
 </head>
  <body data-template-id="__page-root" class="min-h-screen" style="background: linear-gradient(rgb(255, 255, 255), rgb(255, 248, 225));">
   <div class="heart-bg"></div>
