@@ -1,0 +1,471 @@
+<!doctype html>
+<html lang="en"><head><script>window["__codeletBootstrap__"]=JSON.parse('{"A":"A","B":"20260703-05-6766c4c"}');</script><script src="/_sdk/f432b76fb310b513.telemetry_sdk.js" integrity="sha512-9FJQ55EKmmqhyyik8BhrMVfm0+iYYfb8uOlRsjtkxJMEI97qOVEI4PnHohDjQAtvAep0IOEpdQ64eki0sz62ug=="></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Danicup 2026</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&amp;family=DM+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+  <style>
+    :root { --gold: #D4A017; --gold-light: #FFF8E1; --gold-dark: #B8860B; }
+    body { font-family: 'DM Sans', sans-serif; }
+    .font-serif { font-family: 'Playfair Display', serif; }
+    .glass { background: rgba(255,255,255,0.8); backdrop-filter: blur(12px); border: 1px solid rgba(212,160,23,0.15); }
+    .heart-bg { position: fixed; inset: 0; pointer-events: none; overflow: hidden; z-index: 0; }
+    .heart-bg::before { content: '🏸 🏸 🏸 🏸 🏸 🏸 🏸 🏸 🏸 🏸 🏸 🏸 🏸 🏸 🏸'; position: absolute; inset: 0; font-size: 2.5rem; color: rgba(212,160,23,0.06); word-spacing: 2rem; line-height: 4rem; overflow: hidden; }
+    .btn-gold { background: var(--gold); color: white; border-radius: 12px; padding: 0.6rem 1.5rem; font-weight: 600; transition: all 0.2s; }
+    .btn-gold:hover { background: var(--gold-dark); transform: translateY(-1px); }
+    .btn-save { background: #16a34a; color: white; border-radius: 10px; padding: 0.45rem 0.75rem; font-size: 0.8rem; font-weight: 700; width: 100%; transition: all 0.2s; }
+    .btn-save:hover { background: #15803d; transform: translateY(-1px); }
+    .btn-win-active { background: var(--gold) !important; color: white !important; }
+    .admin-tools-hidden { display: none !important; }
+    .card { background: white; border-radius: 20px; box-shadow: 0 4px 24px rgba(212,160,23,0.1); border: 1px solid rgba(212,160,23,0.12); }
+    .match-card { background: white; border-radius: 16px; box-shadow: 0 2px 12px rgba(0,0,0,0.04); border: 1px solid #fef3c7; padding: 1rem; }
+    .score-input { width: 60px; height: 48px; text-align: center; font-size: 1.25rem; font-weight: 700; border: 2px solid #fef3c7; border-radius: 12px; }
+    .score-input:focus { border-color: var(--gold); outline: none; }
+    .tab-active { background: var(--gold); color: white; }
+    .gold-accent { background: linear-gradient(135deg, #D4A017, #F5D060); color: white; }
+  </style>
+  <script src="/_sdk/0179d719c431a79e.data_sdk.js" type="text/javascript" integrity="sha512-OsRvJkI5GkC3MJQcgotQYotpzrMSX415GiKKgvYdxQEEkzD/fdchShO2FMSy0PJr/tiINMXOk5Vl2zAgg6bUiA=="></script>
+  <script src="/_sdk/0b3af1c300e720aa.resizing_sdk.js" type="text/javascript" integrity="sha512-nX1P6oXZmEY5wCI2lUVg3BwKu1cr0yi+ZpXgZ0Yn90vkSwvpmyzBMvOyD6VLJUtBwFI2dSrw1b6OvORxSggw3w=="></script>
+ </head>
+ <body data-template-id="__page-root" class="min-h-screen" style="background: linear-gradient(rgb(255, 255, 255), rgb(255, 248, 225));">
+  <div class="heart-bg"></div>
+  <div id="app" class="relative z-10">
+   <div id="login-screen" class="flex items-center justify-center min-h-screen p-4">
+    <div class="card p-8 w-full max-w-md text-center">
+     <div class="text-5xl mb-4">
+      🏸
+     </div>
+     <h1 data-template-id="login-title" class="canva-text font-serif text-3xl font-bold mb-1" style="color: rgb(26, 26, 46); font-weight: 700; font-style: normal; font-size: 32px;">Danicup 2026</h1>
+     <p data-template-id="login-subtitle" class="canva-text text-sm mb-8" style="color: rgb(212, 160, 23); font-weight: 400; font-style: italic; font-size: 16px;">Couples Edition</p><button onclick="loginPlayer()" class="btn-gold w-full mb-4 text-lg py-3">Enter Tournament</button>
+     <div class="border-t border-yellow-200 pt-4 mt-4">
+      <p class="text-xs text-gray-400 mb-2">Admin Access</p><input id="pin-input" type="password" placeholder="Enter PIN" class="w-full border border-yellow-300 rounded-xl px-4 py-3 mb-3 text-center tracking-widest focus:border-yellow-500 focus:outline-none"> <button onclick="loginAdmin()" class="btn-gold w-full opacity-90">Login as Admin</button>
+     </div>
+    </div>
+   </div>
+   <div id="main-app" class="hidden">
+    <header class="sticky top-0 z-50 glass border-b border-yellow-200">
+     <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between flex-wrap gap-3">
+      <div class="flex items-center gap-2"><span class="text-2xl">🏸</span>
+       <div>
+        <h1 data-template-id="header-title" class="canva-text font-serif font-bold text-lg leading-tight" style="color: rgb(26, 26, 46); font-weight: 700; font-style: normal; font-size: 20px;">Danicup 2026</h1>
+        <p data-template-id="header-sub" class="canva-text text-xs" style="color: rgb(212, 160, 23); font-weight: 400; font-style: normal; font-size: 16px;">Couples Edition</p>
+       </div>
+      </div>
+      <nav class="flex items-center gap-2 ml-auto">
+        <button onclick="showPage('schedule')" id="nav-schedule" class="px-3 py-1.5 rounded-lg text-sm font-medium transition-colors">Schedule</button>
+        <button onclick="showPage('results')" id="nav-results" class="px-3 py-1.5 rounded-lg text-sm font-medium transition-colors">Results</button>
+        <button onclick="logout()" id="nav-exit" class="px-3 py-1.5 rounded-lg text-sm font-medium text-gray-500 hover:text-red-500">Exit</button>
+      </nav>
+     </div>
+     <div id="role-bar" class="text-center text-xs py-1 bg-yellow-50 text-yellow-700 font-medium"></div>
+    </header>
+    <div class="max-w-7xl mx-auto px-4 pt-4">
+     <div class="grid grid-cols-1 sm:grid-cols-2 gap-3" id="dashboard-cards"></div>
+    </div>
+    <div class="max-w-7xl mx-auto px-4 py-4">
+     <div id="page-schedule" class="flex flex-col lg:flex-row gap-4">
+      <div class="flex-1">
+       <div id="admin-actions" class="hidden card p-3 mb-4 flex flex-wrap gap-2 items-center justify-between">
+        <div class="text-sm text-gray-500">Admin tools</div>
+        <div class="flex flex-wrap gap-2">
+         <button onclick="undoLastSave()" class="px-4 py-2 rounded-xl border border-yellow-300 text-yellow-700 bg-white hover:bg-yellow-50 text-sm font-semibold">Undo Last Save</button>
+         <button onclick="resetAllScores()" class="px-4 py-2 rounded-xl border border-red-300 text-red-600 bg-white hover:bg-red-50 text-sm font-semibold">Reset All Scores</button>
+        </div>
+       </div>
+       <div id="schedule-container"></div>
+      </div>
+      <aside class="w-full lg:w-72 space-y-4">
+       <div class="card p-4">
+        <h3 class="font-serif font-bold text-lg mb-3" style="color:var(--gold)">Teams</h3>
+        <div id="teams-sidebar"></div>
+       </div>
+      </aside>
+     </div>
+     <div id="page-results" class="hidden space-y-6"></div>
+     <div id="page-settings" class="hidden max-w-md mx-auto space-y-4">
+      <div class="card p-6">
+       <h2 class="font-serif font-bold text-xl mb-4">Settings</h2><label class="block text-sm font-medium text-gray-700 mb-1" for="setting-name">Tournament Name</label> <input id="setting-name" class="w-full border border-yellow-300 rounded-xl px-4 py-2 mb-4 focus:border-yellow-500 focus:outline-none"> <label class="block text-sm font-medium text-gray-700 mb-1" for="setting-pin">Admin PIN</label> <input id="setting-pin" type="text" class="w-full border border-yellow-300 rounded-xl px-4 py-2 mb-4 focus:border-yellow-500 focus:outline-none"> <button onclick="saveSettings()" class="btn-gold w-full mb-3">Save Settings</button> <button onclick="resetAllScores()" class="w-full py-2 border-2 border-red-300 text-red-500 rounded-xl font-medium hover:bg-red-50">Reset All Scores</button>
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>
+  <script src="/_sdk/e063511df281944a.editing_sdk.js" integrity="sha512-Xa8p4aPfoMxVnzxQE2WAG0FfoaPLxdjOJMfUZGm1yZosJTYmnNDvgLkJ2EoN0i3zxjeQVAzUMSXNvTKQVqbXyQ=="></script>
+  <script>
+const BRACKETS = {
+    A: ['Ralph ♥ Zette','Pao ♥ Dha','John ♥ Pia','Nico ♥ Charm','Bion ♥ Jyka'],
+    B: ['Jake ♥ Riz','Ivan T ♥ Rowie','Ivan ♥ Kath','Charlson ♥ Kat','Gab ♥ Irene']
+};
+
+const SCHEDULE = [
+    { time:'5:00 PM', courts:[
+        {a:'Ralph ♥ Zette',b:'Pao ♥ Dha',ump:'Danica',lj:'JC',bracket:'A',round:'RR1'},
+        {a:'Jake ♥ Riz',b:'Ivan T ♥ Rowie',ump:'Jamboy',lj:'Lourdes',bracket:'B',round:'RR1'},
+        {a:'John ♥ Pia',b:'Nico ♥ Charm',ump:'Rick',lj:'Jam',bracket:'A',round:'RR1'}
+    ]},
+    { time:'5:20 PM', courts:[
+        {a:'Ivan ♥ Kath',b:'Charlson ♥ Kat',ump:'Shannen',lj:'Lance',bracket:'B',round:'RR2'},
+        {a:'Pao ♥ Dha',b:'Bion ♥ Jyka',ump:'Jonnel',lj:'Bea',bracket:'A',round:'RR2'},
+        {a:'Ivan T ♥ Rowie',b:'Gab ♥ Irene',ump:'Je',lj:'Kin',bracket:'B',round:'RR2'}
+    ]},
+    { time:'5:40 PM', courts:[
+        {a:'Ralph ♥ Zette',b:'John ♥ Pia',ump:'Danica',lj:'JC',bracket:'A',round:'RR3'},
+        {a:'Jake ♥ Riz',b:'Ivan ♥ Kath',ump:'Jamboy',lj:'Lourdes',bracket:'B',round:'RR3'},
+        {a:'Pao ♥ Dha',b:'Nico ♥ Charm',ump:'Rick',lj:'Jam',bracket:'A',round:'RR3'}
+    ]},
+    { time:'6:00 PM', courts:[
+        {a:'Ivan T ♥ Rowie',b:'Charlson ♥ Kat',ump:'Shannen',lj:'Lance',bracket:'B',round:'RR4'},
+        {a:'Bion ♥ Jyka',b:'John ♥ Pia',ump:'Jonnel',lj:'Bea',bracket:'A',round:'RR4'},
+        {a:'Gab ♥ Irene',b:'Ivan ♥ Kath',ump:'Je',lj:'Kin',bracket:'B',round:'RR4'}
+    ]},
+    { time:'6:20 PM', courts:[
+        {a:'Ralph ♥ Zette',b:'Nico ♥ Charm',ump:'Danica',lj:'JC',bracket:'A',round:'RR5'},
+        {a:'Jake ♥ Riz',b:'Charlson ♥ Kat',ump:'Jamboy',lj:'Lourdes',bracket:'B',round:'RR5'},
+        {a:'Pao ♥ Dha',b:'John ♥ Pia',ump:'Rick',lj:'Jam',bracket:'A',round:'RR5'}
+    ]},
+    { time:'6:40 PM', courts:[
+        {a:'Ivan T ♥ Rowie',b:'Ivan ♥ Kath',ump:'Shannen',lj:'Lance',bracket:'B',round:'RR6'},
+        {a:'Ralph ♥ Zette',b:'Bion ♥ Jyka',ump:'Jonnel',lj:'Bea',bracket:'A',round:'RR6'},
+        {a:'Jake ♥ Riz',b:'Gab ♥ Irene',ump:'Je',lj:'Kin',bracket:'B',round:'RR6'}
+    ]},
+    { time:'7:00 PM', courts:[
+        {a:'Bion ♥ Jyka',b:'Nico ♥ Charm',ump:'Danica',lj:'JC',bracket:'A',round:'RR7'},
+        {a:'Gab ♥ Irene',b:'Charlson ♥ Kat',ump:'Jamboy',lj:'Lourdes',bracket:'B',round:'RR7'},
+        null
+    ]},
+    { time:'Bronze', courts:[null,{a:'TBD',b:'TBD',ump:'Je',bracket:'Medal',round:'Bronze'},null], medal:'bronze'},
+    { time:'Gold', courts:[null,{a:'TBD',b:'TBD',ump:'Rick',bracket:'Medal',round:'Gold'},null], medal:'gold'}
+];
+
+let isAdmin = false;
+let state = loadState();
+
+function loadState(){
+    const s = localStorage.getItem('danicup2026');
+    if(s){ const parsed = JSON.parse(s); if(!parsed.undoStack) parsed.undoStack=[]; return parsed; }
+    return { pin:'0720', name:'Danicup 2026', scores:{}, undoStack:[] };
+}
+function save(){ localStorage.setItem('danicup2026', JSON.stringify(state)); }
+function getKey(slot,court){ return `${slot}-${court}`; }
+function getScore(slot,court){ return state.scores[getKey(slot,court)] || {sa:'',sb:'',status:'Pending',winner:''}; }
+function setScore(slot,court,data){
+    const key = getKey(slot,court);
+    const previous = state.scores[key] ? {...state.scores[key]} : null;
+    state.undoStack = state.undoStack || [];
+    state.undoStack.push({key, previous});
+    if(state.undoStack.length > 25) state.undoStack.shift();
+    state.scores[key] = data;
+    save();
+    renderAll();
+}
+
+function loginPlayer(){ isAdmin=false; showApp(); }
+function loginAdmin(){
+    if(document.getElementById('pin-input').value === state.pin){ isAdmin=true; showApp(); }
+    else { document.getElementById('pin-input').style.borderColor='red'; }
+}
+function logout(){ document.getElementById('login-screen').classList.remove('hidden'); document.getElementById('main-app').classList.add('hidden'); }
+
+function showApp(){
+    document.getElementById('login-screen').classList.add('hidden');
+    document.getElementById('main-app').classList.remove('hidden');
+    document.getElementById('role-bar').textContent = (isAdmin?'Admin':'Player') + ' View • 3 Courts';
+    showPage('schedule');
+    renderAll();
+}
+
+function showPage(p){
+    if(p === 'settings') p = 'schedule';
+    ['schedule','results'].forEach(x=>{
+        const page = document.getElementById('page-'+x);
+        if(page) page.classList.toggle('hidden',x!==p);
+        const nav=document.getElementById('nav-'+x);
+        if(nav) nav.className = x===p ? 'px-3 py-1.5 rounded-lg text-sm font-medium tab-active' : 'px-3 py-1.5 rounded-lg text-sm font-medium text-gray-600 hover:bg-yellow-50';
+    });
+    const settings = document.getElementById('page-settings');
+    if(settings) settings.classList.add('hidden');
+    if(p==='results') renderResults();
+}
+
+function saveSettings(){ state.name=document.getElementById('setting-name').value||'Danicup 2026'; state.pin=document.getElementById('setting-pin').value||'1234'; save(); }
+function resetAllScores(){
+    const yes = window.confirm('Reset all scores and match statuses? This will clear every saved score.');
+    if(!yes) return false;
+
+    state.undoStack = state.undoStack || [];
+    state.undoStack.push({resetAll:true, previousScores: JSON.parse(JSON.stringify(state.scores || {}))});
+    if(state.undoStack.length > 25) state.undoStack.shift();
+
+    state.scores = {};
+    save();
+
+    // Force all visible inputs/cards to refresh after clearing.
+    renderAll();
+    if(typeof renderResults === 'function') renderResults();
+
+    const role = document.getElementById('role-bar');
+    if(role) role.textContent = (isAdmin ? 'Admin' : 'Player') + ' View • All scores reset • 3 Courts';
+
+    return true;
+}
+
+function resetScores(){
+    return resetAllScores();
+}
+function undoLastSave(){
+    state.undoStack = state.undoStack || [];
+    const last = state.undoStack.pop();
+    if(!last){
+        alert('Nothing to undo yet.');
+        return;
+    }
+    if(last.resetAll){
+        state.scores = last.previousScores || {};
+    } else if(last.previous === null){
+        delete state.scores[last.key];
+    } else {
+        state.scores[last.key] = last.previous;
+    }
+    save();
+    renderAll();
+    const role = document.getElementById('role-bar');
+    if(role) role.textContent = (isAdmin?'Admin':'Player') + ' View • Last save undone • 3 Courts';
+}
+
+function renderAll(){
+    renderDashboard();
+    renderSchedule();
+    renderTeams();
+    const actions = document.getElementById('admin-actions');
+    if(actions) actions.classList.toggle('hidden', !isAdmin);
+}
+
+function renderDashboard(){
+    const rrGames = SCHEDULE.filter(s=>!s.medal).reduce((n,s)=>n+s.courts.filter(c=>c).length,0);
+    const medalGames = 2;
+    let completed=0, ongoing=0;
+    SCHEDULE.forEach((slot,si)=>slot.courts.forEach((c,ci)=>{
+        if(!c) return;
+        const sc=getScore(si,ci);
+        if(sc.status==='Done') completed++;
+        if(sc.status==='Ongoing') ongoing++;
+    }));
+    const totalGames = SCHEDULE.reduce((n,s)=>n+s.courts.filter(c=>c).length,0);
+    const queue = Math.max(totalGames - completed - ongoing, 0);
+    document.getElementById('dashboard-cards').innerHTML = [
+        {n:completed,l:'Completed'},
+        {n:ongoing,l:'Ongoing'}
+    ].map(d=>`<div class="card p-4 text-center"><div class="text-2xl font-bold" style="color:var(--gold)">${d.n}</div><div class="text-xs text-gray-500">${d.l}</div></div>`).join('');
+}
+
+function renderSchedule(){
+    const container = document.getElementById('schedule-container');
+    let html = '';
+    const rrComplete = allRoundRobinDone();
+
+    SCHEDULE.forEach((slot,si)=>{
+        let isMedal = !!slot.medal;
+        let headerClass = isMedal ? 'gold-accent' : 'bg-yellow-50 text-yellow-800';
+        html += `<div class="mb-4"><div class="${headerClass} rounded-xl px-4 py-2 font-serif font-bold text-sm mb-2">${isMedal?(slot.medal==='gold'?'🥇 Gold Match':'🥉 Bronze Match'):'Court Schedule'}</div>`;
+
+        if(isMedal && !rrComplete){
+            const label = slot.medal === 'gold' ? 'Battle for Gold' : 'Battle for Bronze';
+            const rule = slot.medal === 'gold'
+              ? 'Bracket A No. 1 vs Bracket B No. 1'
+              : 'Bracket A No. 2 vs Bracket B No. 2';
+            const umpire = slot.medal === 'gold' ? 'Rick' : 'Je';
+            html += `
+              <div class="match-card text-center py-6">
+                <div class="text-center text-xs font-bold mb-3 rounded-lg py-1 bg-yellow-50 text-yellow-700">Court TBA</div>
+                <div class="font-serif font-bold text-lg mb-1">${label}</div>
+                <div class="text-sm text-gray-500 mb-3">Waiting for bracket results…</div>
+                <div class="text-sm font-medium">${rule}</div>
+                <div class="text-xs text-gray-400 mt-3">🏸 Umpire: ${umpire}</div>
+              </div>`;
+            html += `</div>`;
+            return;
+        }
+
+        if(isMedal && rrComplete){
+            html += `<div class="grid grid-cols-1 md:grid-cols-1 gap-3">`;
+        } else {
+            html += `<div class="grid grid-cols-1 md:grid-cols-3 gap-3">`;
+        }
+
+        slot.courts.forEach((c,ci)=>{
+            if(isMedal && ci !== 1) return;
+            if(!c){
+                html+=`<div class="match-card text-center text-gray-300 py-6"><div class="text-center text-xs font-bold mb-2 rounded-lg py-1 bg-yellow-50 text-yellow-700">${isMedal?'Court TBA':'Court '+(ci+1)}</div>No Match</div>`;
+                return;
+            }
+            const sc = getScore(si,ci);
+            if(isMedal && c){
+                const pair = getMedalPair(slot.medal);
+                c = {...c, a: pair.a, b: pair.b};
+            }
+            const statusColors = {Pending:'bg-gray-100 text-gray-500',Ongoing:'bg-yellow-100 text-yellow-700',Done:'bg-green-100 text-green-600'};
+            html += `<div class="match-card">`;
+            html += `<div class="text-center text-xs font-bold mb-2 rounded-lg py-1 bg-yellow-50 text-yellow-700">${isMedal?'Court TBA':'Court '+(ci+1)}</div>`;
+            html += `<div class="text-center mb-2"><span class="font-bold text-sm">${c.a}</span><div class="text-xs text-gray-400 my-0.5">vs</div><span class="font-bold text-sm">${c.b}</span></div>`;
+            html += `<div class="flex justify-between text-xs text-gray-400 mb-2"><span>${c.bracket} • ${c.round}</span><span class="px-2 py-0.5 rounded-full ${statusColors[sc.status||'Pending']}">${sc.status||'Pending'}</span></div>`;
+            if(c.ump) html+=`<div class="text-xs text-gray-400">🏸 Umpire: ${c.ump}${c.lj?' • LJ: '+c.lj:''}</div>`;
+            if(isAdmin){
+                const key = getKey(si,ci);
+                html+=`<div class="border-t border-yellow-100 mt-2 pt-2" id="edit-${key}" data-winner="${sc.winner||''}">`;
+                html+=`<div class="flex items-center justify-center gap-2 mb-2"><input id="sa-${key}" class="score-input" value="${sc.sa}" inputmode="numeric"><span class="text-gray-300">-</span><input id="sb-${key}" class="score-input" value="${sc.sb}" inputmode="numeric"></div>`;
+                html+=`<select id="status-${key}" class="w-full text-xs border border-yellow-200 rounded-lg px-2 py-1 mb-2"><option ${sc.status==='Pending'?'selected':''}>Pending</option><option ${sc.status==='Ongoing'?'selected':''}>Ongoing</option><option ${sc.status==='Done'?'selected':''}>Done</option></select>`;
+                html+=`<div class="flex gap-1 mb-2"><button id="win-a-${key}" onclick="selectWinner(${si},${ci},'a')" class="flex-1 text-xs py-1 rounded-lg ${sc.winner==='a'?'btn-win-active':'bg-yellow-50 text-yellow-700'}">${c.a} Wins</button><button id="win-b-${key}" onclick="selectWinner(${si},${ci},'b')" class="flex-1 text-xs py-1 rounded-lg ${sc.winner==='b'?'btn-win-active':'bg-yellow-50 text-yellow-700'}">${c.b} Wins</button></div>`;
+                html+=`<button onclick="saveMatch(${si},${ci})" class="btn-save">Save Changes</button>`;
+                html+=`</div>`;
+            } else if(sc.status==='Done'&&sc.sa&&sc.sb){
+                html+=`<div class="text-center font-bold text-lg mt-1" style="color:var(--gold)">${sc.sa} - ${sc.sb}</div>`;
+            }
+            html += `</div>`;
+        });
+        html += `</div></div>`;
+    });
+    container.innerHTML = html;
+}
+
+function updateScore(si,ci,field,val){
+    const sc=getScore(si,ci);
+    sc[field]=val;
+    setScore(si,ci,sc);
+}
+
+function selectWinner(si,ci,w){
+    const key = getKey(si,ci);
+    const box = document.getElementById('edit-'+key);
+    if(!box) return;
+    const current = box.dataset.winner;
+    const next = current === w ? '' : w;
+    box.dataset.winner = next;
+
+    const aBtn = document.getElementById('win-a-'+key);
+    const bBtn = document.getElementById('win-b-'+key);
+    if(aBtn) aBtn.className = 'flex-1 text-xs py-1 rounded-lg ' + (next === 'a' ? 'btn-win-active' : 'bg-yellow-50 text-yellow-700');
+    if(bBtn) bBtn.className = 'flex-1 text-xs py-1 rounded-lg ' + (next === 'b' ? 'btn-win-active' : 'bg-yellow-50 text-yellow-700');
+}
+
+function saveMatch(si,ci){
+    const key = getKey(si,ci);
+    const box = document.getElementById('edit-'+key);
+    const sc = {
+        sa: document.getElementById('sa-'+key)?.value || '',
+        sb: document.getElementById('sb-'+key)?.value || '',
+        status: document.getElementById('status-'+key)?.value || 'Pending',
+        winner: box?.dataset.winner || ''
+    };
+    const previous = state.scores[key] ? {...state.scores[key]} : null;
+    state.undoStack = state.undoStack || [];
+    state.undoStack.push({key, previous});
+    if(state.undoStack.length > 25) state.undoStack.shift();
+    state.scores[key] = sc;
+    save();
+    renderAll();
+    const role = document.getElementById('role-bar');
+    if(role) role.textContent = (isAdmin?'Admin':'Player') + ' View • Saved just now • 3 Courts';
+}
+
+function setWinner(si,ci,w){
+    const sc=getScore(si,ci);
+    sc.winner=w;
+    sc.status='Done';
+    setScore(si,ci,sc);
+}
+
+function renderTeams(){
+    const el=document.getElementById('teams-sidebar');
+    el.innerHTML = ['A','B'].map(b=>`<div class="mb-3"><div class="text-xs font-bold text-gray-400 mb-1">Bracket ${b}</div>${BRACKETS[b].map(t=>`<div class="text-sm py-0.5">${t}</div>`).join('')}</div>`).join('');
+}
+
+function calcStandings(){
+    const res={A:{},B:{}};
+    ['A','B'].forEach(b=>BRACKETS[b].forEach(t=>res[b][t]={team:t,w:0,l:0,pf:0,pa:0,played:0}));
+    SCHEDULE.forEach((slot,si)=>{
+        if(slot.medal) return;
+        slot.courts.forEach((c,ci)=>{
+            if(!c) return;
+            const sc=getScore(si,ci);
+            if(sc.status!=='Done'||!sc.sa||!sc.sb) return;
+            const br=c.bracket;
+            const a=res[br][c.a], b2=res[br][c.b];
+            if(!a||!b2) return;
+            const sa=parseInt(sc.sa)||0, sb=parseInt(sc.sb)||0;
+            a.played++; b2.played++;
+            a.pf+=sa; a.pa+=sb; b2.pf+=sb; b2.pa+=sa;
+            if(sc.winner==='a'){a.w++;b2.l++;}
+            else if(sc.winner==='b'){b2.w++;a.l++;}
+        });
+    });
+    const sort = obj => Object.values(obj).sort((a,b)=>b.w-a.w||(b.pf-b.pa)-(a.pf-a.pa)||b.pf-a.pf);
+    return {A:sort(res.A),B:sort(res.B)};
+}
+
+
+function allRoundRobinDone(){
+    return SCHEDULE
+      .filter(slot => !slot.medal)
+      .every((slot,si) => slot.courts.every((c,ci) => !c || getScore(si,ci).status === 'Done'));
+}
+
+
+function hasAnyCompletedRoundRobin(){
+    return SCHEDULE.some((slot,si) => !slot.medal && slot.courts.some((c,ci) => c && getScore(si,ci).status === 'Done'));
+}
+
+function getMedalPair(type){
+    const standings = calcStandings();
+    const aTeam = type === 'gold' ? standings.A[0]?.team : standings.A[1]?.team;
+    const bTeam = type === 'gold' ? standings.B[0]?.team : standings.B[1]?.team;
+    return {
+        a: aTeam || (type === 'gold' ? 'Bracket A No. 1' : 'Bracket A No. 2'),
+        b: bTeam || (type === 'gold' ? 'Bracket B No. 1' : 'Bracket B No. 2')
+    };
+}
+
+function renderResults(){
+    const s=calcStandings();
+    const el=document.getElementById('page-results');
+    const hasResults = hasAnyCompletedRoundRobin();
+    const gold = hasResults ? getMedalPair('gold') : {a:'TBD', b:'TBD'};
+    const bronze = hasResults ? getMedalPair('bronze') : {a:'TBD', b:'TBD'};
+    let html = `
+    <div class="card p-4">
+      <h3 class="font-serif font-bold mb-3" style="color:var(--gold)">Medal Matches</h3>
+      ${hasResults ? `
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+        <div class="rounded-xl border border-yellow-200 bg-yellow-50 p-4">
+          <div class="text-xs font-bold text-yellow-700 mb-1">Battle for Gold</div>
+          <div class="font-semibold">${gold.a} vs ${gold.b}</div><div class="text-sm text-gray-500 mt-2">🏸 Umpire: <strong>Rick</strong></div>
+        </div>
+        <div class="rounded-xl border border-yellow-200 bg-white p-4">
+          <div class="text-xs font-bold text-yellow-700 mb-1">Battle for Bronze</div>
+          <div class="font-semibold">${bronze.a} vs ${bronze.b}</div><div class="text-sm text-gray-500 mt-2">🏸 Umpire: <strong>Je</strong></div>
+        </div>
+      </div>` : `
+      <div class="rounded-xl border border-yellow-200 bg-yellow-50 p-4 text-sm text-gray-500">
+        Medal matches will appear once round-robin results are saved.
+      </div>`}
+    </div>`;
+    ['A','B'].forEach(b=>{
+        html+=`<div class="card p-4 overflow-x-auto"><h3 class="font-serif font-bold mb-3" style="color:var(--gold)">Bracket ${b}</h3><table class="w-full text-sm"><thead><tr class="text-left text-xs text-gray-400 border-b"><th class="pb-2">#</th><th class="pb-2">Team</th><th class="pb-2">P</th><th class="pb-2">W</th><th class="pb-2">L</th><th class="pb-2">PF</th><th class="pb-2">PA</th><th class="pb-2">+/-</th></tr></thead><tbody>`;
+        s[b].forEach((t,i)=>{
+            html+=`<tr class="border-b border-yellow-100 ${i<2?'bg-yellow-50/50':''}"><td class="py-2 font-bold">${i+1}</td><td class="py-2 font-medium">${t.team}</td><td>${t.played}</td><td class="text-green-600 font-medium">${t.w}</td><td class="text-red-400">${t.l}</td><td>${t.pf}</td><td>${t.pa}</td><td class="font-medium">${t.pf-t.pa>0?'+':''}${t.pf-t.pa}</td></tr>`;
+        });
+        html+=`</tbody></table></div>`;
+    });
+    el.innerHTML=html;
+}
+
+
+window.resetAllScores = resetAllScores;
+window.resetScores = resetScores;
+window.undoLastSave = undoLastSave;
+
+lucide.createIcons();
+</script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a157657dc156bc3f',t:'MTc4MzA5NzUwMi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
+</body></html>
