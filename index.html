@@ -1,6 +1,6 @@
 <!doctype html>
-<html lang="en"><head><script>window["__codeletBootstrap__"]=JSON.parse('{"A":"A","B":"20260703-05-6766c4c"}');</script><script src="/_sdk/f432b76fb310b513.telemetry_sdk.js" integrity="sha512-9FJQ55EKmmqhyyik8BhrMVfm0+iYYfb8uOlRsjtkxJMEI97qOVEI4PnHohDjQAtvAep0IOEpdQ64eki0sz62ug=="></script>
-  <meta charset="UTF-8">
+<html lang="en"><head>
+<meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Danicup 2026</title>
   <script src="https://cdn.tailwindcss.com/3.4.17"></script>
@@ -25,18 +25,18 @@
     .score-input:focus { border-color: var(--gold); outline: none; }
     .tab-active { background: var(--gold); color: white; }
     .gold-accent { background: linear-gradient(135deg, #D4A017, #F5D060); color: white; }
+    .main-logo { width: 52px; height: 52px; border-radius: 999px; object-fit: cover; box-shadow: 0 2px 12px rgba(0,0,0,.12); }
+    .login-logo { width: 96px; height: 96px; border-radius: 999px; object-fit: cover; margin: 0 auto 1rem; box-shadow: 0 4px 18px rgba(0,0,0,.14); }
+    .sync-badge { font-size: 11px; color: #92400e; background: #fff7ed; border-top: 1px solid #fde68a; padding: 4px 8px; text-align: center; }
   </style>
-  <script src="/_sdk/0179d719c431a79e.data_sdk.js" type="text/javascript" integrity="sha512-OsRvJkI5GkC3MJQcgotQYotpzrMSX415GiKKgvYdxQEEkzD/fdchShO2FMSy0PJr/tiINMXOk5Vl2zAgg6bUiA=="></script>
-  <script src="/_sdk/0b3af1c300e720aa.resizing_sdk.js" type="text/javascript" integrity="sha512-nX1P6oXZmEY5wCI2lUVg3BwKu1cr0yi+ZpXgZ0Yn90vkSwvpmyzBMvOyD6VLJUtBwFI2dSrw1b6OvORxSggw3w=="></script>
- </head>
+
+</head>
  <body data-template-id="__page-root" class="min-h-screen" style="background: linear-gradient(rgb(255, 255, 255), rgb(255, 248, 225));">
   <div class="heart-bg"></div>
   <div id="app" class="relative z-10">
    <div id="login-screen" class="flex items-center justify-center min-h-screen p-4">
     <div class="card p-8 w-full max-w-md text-center">
-     <div class="text-5xl mb-4">
-      🏸
-     </div>
+     <img src="Danicup Logo_V2(2).png" alt="Danicup logo" class="login-logo" onerror="this.outerHTML='<div class=&quot;text-5xl mb-4&quot;>🏸</div>'">
      <h1 data-template-id="login-title" class="canva-text font-serif text-3xl font-bold mb-1" style="color: rgb(26, 26, 46); font-weight: 700; font-style: normal; font-size: 32px;">Danicup 2026</h1>
      <p data-template-id="login-subtitle" class="canva-text text-sm mb-8" style="color: rgb(212, 160, 23); font-weight: 400; font-style: italic; font-size: 16px;">Couples Edition</p><button onclick="loginPlayer()" class="btn-gold w-full mb-4 text-lg py-3">Enter Tournament</button>
      <div class="border-t border-yellow-200 pt-4 mt-4">
@@ -47,7 +47,7 @@
    <div id="main-app" class="hidden">
     <header class="sticky top-0 z-50 glass border-b border-yellow-200">
      <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between flex-wrap gap-3">
-      <div class="flex items-center gap-2"><span class="text-2xl">🏸</span>
+      <div class="flex items-center gap-3"><img src="Danicup Logo_V2(2).png" alt="Danicup logo" class="main-logo" onerror="this.outerHTML='<span class=&quot;text-2xl&quot;>🏸</span>'">
        <div>
         <h1 data-template-id="header-title" class="canva-text font-serif font-bold text-lg leading-tight" style="color: rgb(26, 26, 46); font-weight: 700; font-style: normal; font-size: 20px;">Danicup 2026</h1>
         <p data-template-id="header-sub" class="canva-text text-xs" style="color: rgb(212, 160, 23); font-weight: 400; font-style: normal; font-size: 16px;">Couples Edition</p>
@@ -60,6 +60,7 @@
       </nav>
      </div>
      <div id="role-bar" class="text-center text-xs py-1 bg-yellow-50 text-yellow-700 font-medium"></div>
+     <div id="sync-status" class="sync-badge">Connecting to live scores…</div>
     </header>
     <div class="max-w-7xl mx-auto px-4 pt-4">
      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3" id="dashboard-cards"></div>
@@ -92,8 +93,7 @@
     </div>
    </div>
   </div>
-  <script src="/_sdk/e063511df281944a.editing_sdk.js" integrity="sha512-Xa8p4aPfoMxVnzxQE2WAG0FfoaPLxdjOJMfUZGm1yZosJTYmnNDvgLkJ2EoN0i3zxjeQVAzUMSXNvTKQVqbXyQ=="></script>
-  <script>
+<script>
 const BRACKETS = {
     A: ['Ralph ♥ Zette','Pao ♥ Dha','John ♥ Pia','Nico ♥ Charm','Bion ♥ Jyka'],
     B: ['Jake ♥ Riz','Ivan T ♥ Rowie','Ivan ♥ Kath','Charlson ♥ Kat','Gab ♥ Irene']
@@ -141,13 +141,116 @@ const SCHEDULE = [
 
 let isAdmin = false;
 let state = loadState();
+let firebaseReady = false;
+let suppressNextSnapshot = false;
+
+function defaultState(){
+    return { pin:'0720', adminCode:'0720', name:'Danicup 2026', tournamentName:'DANICUP 2026 Couples Edition', scores:{}, undoStack:[] };
+}
 
 function loadState(){
-    const s = localStorage.getItem('danicup2026');
-    if(s){ const parsed = JSON.parse(s); if(!parsed.undoStack) parsed.undoStack=[]; return parsed; }
-    return { pin:'0720', name:'Danicup 2026', scores:{}, undoStack:[] };
+    const base = defaultState();
+    try {
+        const s = localStorage.getItem('danicup2026');
+        if(s){
+            const parsed = JSON.parse(s);
+            return {
+                ...base,
+                ...parsed,
+                pin: parsed.pin || parsed.adminCode || base.pin,
+                adminCode: parsed.adminCode || parsed.pin || base.adminCode,
+                name: parsed.name || parsed.tournamentName || base.name,
+                tournamentName: parsed.tournamentName || parsed.name || base.tournamentName,
+                scores: parsed.scores || {},
+                undoStack: parsed.undoStack || []
+            };
+        }
+    } catch(e) {}
+    return base;
 }
-function save(){ localStorage.setItem('danicup2026', JSON.stringify(state)); }
+
+function setSyncStatus(message){
+    const el = document.getElementById('sync-status');
+    if(el) el.textContent = message;
+}
+
+function stateForFirebase(){
+    return {
+        pin: state.pin || state.adminCode || '0720',
+        adminCode: state.pin || state.adminCode || '0720',
+        name: state.name || state.tournamentName || 'Danicup 2026',
+        tournamentName: state.name || state.tournamentName || 'Danicup 2026',
+        scores: state.scores || {},
+        undoStack: state.undoStack || [],
+        updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+    };
+}
+
+function save(){
+    localStorage.setItem('danicup2026', JSON.stringify(state));
+
+    if(typeof tournamentRef !== 'undefined'){
+        suppressNextSnapshot = true;
+        tournamentRef.set(stateForFirebase(), { merge:true })
+            .then(() => {
+                firebaseReady = true;
+                setSyncStatus('Live sync active • Saved to Firebase');
+                setTimeout(() => { suppressNextSnapshot = false; }, 500);
+            })
+            .catch(err => {
+                suppressNextSnapshot = false;
+                console.error('Firebase save failed:', err);
+                setSyncStatus('Offline/local save only • Check Firebase rules');
+            });
+    }
+}
+
+function startLiveSync(){
+    if(typeof tournamentRef === 'undefined'){
+        setSyncStatus('Local mode only • Firebase not connected');
+        return;
+    }
+
+    tournamentRef.onSnapshot((docSnap) => {
+        firebaseReady = true;
+        if(!docSnap.exists){
+            tournamentRef.set(stateForFirebase(), { merge:true });
+            setSyncStatus('Live sync active • Initializing tournament data');
+            return;
+        }
+
+        const data = docSnap.data() || {};
+        const merged = {
+            ...defaultState(),
+            ...state,
+            ...data,
+            pin: data.pin || data.adminCode || state.pin || '0720',
+            adminCode: data.adminCode || data.pin || state.adminCode || '0720',
+            name: data.name || data.tournamentName || state.name || 'Danicup 2026',
+            tournamentName: data.tournamentName || data.name || state.tournamentName || 'Danicup 2026',
+            scores: data.scores || {},
+            undoStack: data.undoStack || []
+        };
+
+        if(suppressNextSnapshot){
+            state = merged;
+            localStorage.setItem('danicup2026', JSON.stringify(state));
+            return;
+        }
+
+        state = merged;
+        localStorage.setItem('danicup2026', JSON.stringify(state));
+        setSyncStatus('Live sync active • Updates appear automatically');
+
+        if(!document.getElementById('main-app').classList.contains('hidden')){
+            renderAll();
+            if(!document.getElementById('page-results').classList.contains('hidden')) renderResults();
+        }
+    }, (err) => {
+        console.error('Firebase live sync failed:', err);
+        setSyncStatus('Live sync error • Check Firebase rules');
+    });
+}
 function getKey(slot,court){ return `${slot}-${court}`; }
 function getScore(slot,court){ return state.scores[getKey(slot,court)] || {sa:'',sb:'',status:'Pending',winner:''}; }
 function setScore(slot,court,data){
@@ -189,7 +292,13 @@ function showPage(p){
     if(p==='results') renderResults();
 }
 
-function saveSettings(){ state.name=document.getElementById('setting-name').value||'Danicup 2026'; state.pin=document.getElementById('setting-pin').value||'1234'; save(); }
+function saveSettings(){
+    state.name = document.getElementById('setting-name').value || 'Danicup 2026';
+    state.tournamentName = state.name;
+    state.pin = document.getElementById('setting-pin').value || '0720';
+    state.adminCode = state.pin;
+    save();
+}
 function resetAllScores(){
     const yes = window.confirm('Reset all scores and match statuses? This will clear every saved score.');
     if(!yes) return false;
@@ -207,6 +316,7 @@ function resetAllScores(){
 
     const role = document.getElementById('role-bar');
     if(role) role.textContent = (isAdmin ? 'Admin' : 'Player') + ' View • All scores reset • 3 Courts';
+    setSyncStatus('Live sync active • Reset saved');
 
     return true;
 }
@@ -232,6 +342,7 @@ function undoLastSave(){
     renderAll();
     const role = document.getElementById('role-bar');
     if(role) role.textContent = (isAdmin?'Admin':'Player') + ' View • Last save undone • 3 Courts';
+    setSyncStatus('Live sync active • Undo saved');
 }
 
 function renderAll(){
@@ -367,6 +478,7 @@ function saveMatch(si,ci){
     renderAll();
     const role = document.getElementById('role-bar');
     if(role) role.textContent = (isAdmin?'Admin':'Player') + ' View • Saved just now • 3 Courts';
+    setSyncStatus('Live sync active • Score saved');
 }
 
 function setWinner(si,ci,w){
@@ -465,7 +577,7 @@ window.resetAllScores = resetAllScores;
 window.resetScores = resetScores;
 window.undoLastSave = undoLastSave;
 
+startLiveSync();
 lucide.createIcons();
 </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a157657dc156bc3f',t:'MTc4MzA5NzUwMi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script>
 </body></html>
